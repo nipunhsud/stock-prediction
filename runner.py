@@ -4,7 +4,7 @@ import json
 import time
 import step1
 import step2
-import quaterly_annualized_growth_rate as qart
+import annualized_growth_rate as annual
 import cagr
 import cup
 
@@ -19,11 +19,11 @@ for symbols in symbolsList:
 		# sym = symbols.get('symbol').split(".")
 		sym = symbols.get('symbol')
 		print(sym)
-		time.sleep(3)
+		time.sleep(2)
 		quaterly_eps = step1.calc_eps(sym)
 		
 		if quaterly_eps is not None:
 			
-			qart.calc_annual_eps(sym)
+			annual.calc_annual_eps(sym)
 			cagr.calc_cagr(sym)
 			cup.cup(sym)

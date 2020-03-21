@@ -1,30 +1,24 @@
-import munch
-import requests
-import json
+from __future__ import print_function
+import time
+import intrinio_sdk
+from intrinio_sdk.rest import ApiException
+from pprint import pprint
 
-response = requests.get('https://financialmodelingprep.com/api/v3/financials/income-statement/TSLA?period=quarter')
+intrinio_sdk.ApiClient(
+).configuration.api_key['api_key'] = 'OjU1ZGI0NTNhMzZiOWViNmRjMWM4YjEyYWMwMDdkMjNj'
 
-data = response.json()
+security_api = intrinio_sdk.SecurityApi()
 
-print(type(data))
+# str | A Security identifier (Ticker, FIGI, ISIN, CUSIP, Intrinio ID)
+identifier = 'AAPL'
+# int | The number of results to return (optional) (default to 100)
+page_size = 500
+# str | Gets the next page of data from a previous API call (optional)
+next_page = ''
 
-a = munch.Munch(data)
-
-
-financialList = {}
-
-print(a.financials)
-
-for financial in a.financials:
-	b = munch.Munch(financial)
-	financialList[b.get('date')] = b.get('EPS')
-
-print(financialList)
-
-print(float(financialList['2019-09-30']))
-percentageIncrease = ((float(financialList.get('2019-09-30')) - float(financialList.get('2018-09-30'))) / float(financialList.get('2018-09-30')) * 100)
-		
-print("======")
-print(percentageIncrease)
-print("======")
-
+try:
+  api_response = security_api.get_security_zacks_eps_surprises(
+      identifier, page_size=page_size, next_page=next_page)
+  pprint(api_response)
+except ApiException as e:
+  print("Exception when calling SecurityApi->get_security_zacks_eps_surprises: %s\r\n" % e)
