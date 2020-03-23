@@ -17,7 +17,8 @@ def get_annualized_growth_rate(data, key) :
 		
 		if eps_growth != '' and eps_growth != '0.0':
 			# print(float(b.get(key)))
-			growth = growth + float(b.get(key))
+			# print(eps_growth)
+			growth = growth + float(eps_growth)
 			# print(growth)
 			counter = counter + 1
 	annualized_growth_rate = growth/5 * 100
