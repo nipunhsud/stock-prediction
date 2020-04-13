@@ -4,14 +4,14 @@ import json
 from dateutil.relativedelta import relativedelta
 import datetime
 
-def cup(stock):
+def analyze(stock):
     from_date = datetime.date.today() + relativedelta(months=-15)
     to_date = datetime.date.today() + relativedelta(days=+1)
     # print(from_date)
     # print(to_date)
     stock_price_history = requests.get("https://financialmodelingprep.com/api/v3/historical-price-full/{}?from = {} & to = {}".format(stock, from_date, to_date)).json()
     # print(munch.Munch(stock_price_history).get('historical')[0])
-
+    
     current_price_index = len(munch.Munch(stock_price_history).get('historical')) - 1
     current_price = munch.Munch(stock_price_history).get('historical')[current_price_index].get('close')
 
@@ -32,11 +32,11 @@ def cup(stock):
         price_ratio = current_price/start_data
     # print(date_15_month_high_reached)
     if price_ratio > .90 and price_ratio < 1.1:
-        print(datetime.datetime.strptime(
-            date_15_month_high_reached, '%Y-%m-%d'))
-        print(datetime.datetime.today() + relativedelta(days=-45))
+        # print(datetime.datetime.strptime(
+        #     date_15_month_high_reached, '%Y-%m-%d'))
+        # print(datetime.datetime.today() + relativedelta(days=-45))
         # Returns yes, if the date it reached a 15month high was between 45 days and 15months from NOW
         if datetime.datetime.strptime(date_15_month_high_reached, '%Y-%m-%d') < datetime.datetime.today() + relativedelta(days=-45):
-            print('yes')
+            return 'yes'
     # print(end_data/start_data)
     # print(stock_price_history)

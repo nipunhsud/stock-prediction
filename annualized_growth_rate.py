@@ -22,7 +22,7 @@ def get_annualized_growth_rate(data, key) :
 			# print(growth)
 			counter = counter + 1
 	annualized_growth_rate = growth/5 * 100
-	print("Annualized Growth Rate %"+ str(annualized_growth_rate))
+	return annualized_growth_rate
 
 
 def calc_annual_eps(stock):
@@ -32,4 +32,5 @@ def calc_annual_eps(stock):
 
 	# Creates a ranker - this measures if EPS growth is more than 60%
 	if 'growth' in annual_income_stmt:
-		get_annualized_growth_rate(annual_income_stmt.growth, 'EPS Growth')
+		return get_annualized_growth_rate(annual_income_stmt.growth, 'EPS Growth')
+	

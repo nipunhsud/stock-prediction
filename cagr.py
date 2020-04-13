@@ -15,7 +15,7 @@ def cagr(data, key):
             if '-' in current_eps:
                 current_eps = '0'
             cagr = (pow((float(current_eps.strip())/float(five_year_eps.strip())), 1/5) - 1) * 100
-            print("cagr % " + str(cagr))
+            return cagr
 
 
 def calc_cagr(stock):
@@ -28,4 +28,4 @@ def calc_cagr(stock):
     # Creates a ranker - this measures if EPS growth is more than 60%
     if 'financials' in annual_income_stmt:
         # print(annual_income_stmt.financials)
-        cagr(annual_income_stmt.financials, 'EPS')
+        return cagr(annual_income_stmt.financials, 'EPS')
