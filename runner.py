@@ -12,7 +12,7 @@ from result import Result
 def sort_and_print(result_list):
   
   for result in result_list:
-    
+    print("TICKER: ", result.sym)
     if result.annualized_growth_rate is not None:
       print("AGR: ", str("{:,.2f}".format(result.annualized_growth_rate)))
     if result.qagr is not None:
@@ -40,11 +40,10 @@ def analyze_stocks(symbolsList):
       if(symbol.get('exchange') == 'New York Stock Exchange' or symbol.get('exchange') == 'Nasdaq Global Select'):
         sym = symbol.get('symbol')
       
-    print(sym)
     time.sleep(2)
     
     result_list= []
-    result_list.append(Result(qagr.calc_eps(sym),annual.calc_annual_eps(sym), cagr.calc_cagr(
+    result_list.append(Result(sym, qagr.calc_eps(sym),annual.calc_annual_eps(sym), cagr.calc_cagr(
         sym), cup.analyze(sym), market_cap_pe.perform(sym)))
     # if quaterly_eps is not None:
       
