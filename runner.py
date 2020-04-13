@@ -11,6 +11,7 @@ from result import Result
 
 def sort_and_print(result_list):
   
+  result_list.sort(key=lambda x: x)
   for result in result_list:
     print("TICKER: ", result.sym)
     if result.annualized_growth_rate is not None:
@@ -27,26 +28,26 @@ def sort_and_print(result_list):
       
   
 def analyze_stocks(symbolsList):
+  # print(symbolsList)
   
   for symbol in symbolsList:
+    time.sleep(2)
     sym = ""
     if isinstance(symbol, str):
-        sym = symbol
-    # print(symbols.get('symbol'))
+      sym = symbol
+      print(symbol)
     
-    # if(symbols.get('exchange') == 'Toronto'):
-      # sym = symbols.get('symbol').split(".")
     else:
       if(symbol.get('exchange') == 'New York Stock Exchange' or symbol.get('exchange') == 'Nasdaq Global Select'):
         sym = symbol.get('symbol')
       
-    time.sleep(2)
-    
-    result_list= []
-    result_list.append(Result(sym, qagr.calc_eps(sym),annual.calc_annual_eps(sym), cagr.calc_cagr(
-        sym), cup.analyze(sym), market_cap_pe.perform(sym)))
-    # if quaterly_eps is not None:
-      
-      
-    sort_and_print(result_list)
+
+    if sym != "":  
+      result_list = []
+      result_list.append(Result(sym, qagr.calc_eps(sym),annual.calc_annual_eps(sym), cagr.calc_cagr(
+          sym), cup.analyze(sym), market_cap_pe.perform(sym)))
+      # if quaterly_eps is not None:
+        
+        
+      sort_and_print(result_list)
     

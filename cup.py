@@ -12,6 +12,8 @@ def analyze(stock):
     stock_price_history = requests.get("https://financialmodelingprep.com/api/v3/historical-price-full/{}?from = {} & to = {}".format(stock, from_date, to_date)).json()
     # print(munch.Munch(stock_price_history).get('historical')[0])
     
+    if munch.Munch(stock_price_history).get('historical') == None:
+        return None
     current_price_index = len(munch.Munch(stock_price_history).get('historical')) - 1
     current_price = munch.Munch(stock_price_history).get('historical')[current_price_index].get('close')
 
