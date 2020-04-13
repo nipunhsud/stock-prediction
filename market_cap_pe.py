@@ -11,5 +11,7 @@ def perform(stock):
 
   # print('PE '+ str(key_metrics[0].get('peRatio')))
   # print('Market Cap ' + str("{:,}".format(key_metrics[0].get('marketCap'))))
-
-  return KeyMetric(key_metrics[0].get('marketCap'), key_metrics[0].get('peRatio'))
+  if len(key_metrics) > 0 and key_metrics[0] is not None:
+    return KeyMetric(key_metrics[0].get('marketCap'), key_metrics[0].get('peRatio'))
+  else:
+    return KeyMetric(0, 0)
