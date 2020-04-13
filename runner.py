@@ -21,7 +21,7 @@ def sort_and_print(result_list):
       print("CAGR: ", str("{:,.2f}".format(result.cagr)))
     print("CUP: ", result.cup)
     if result.key_metric.market_cap is not None:
-      print("Market Cap: ", str("{:,.2f}".format(result.key_metric.market_cap)))
+      print("Market Cap (MM): ", str("{:,.2f}".format(result.key_metric.market_cap/1000000)))
     if result.key_metric.pe is not None:
       print("PE: ", str("{:,.2f}".format(result.key_metric.pe)))
       
