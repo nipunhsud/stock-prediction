@@ -38,7 +38,7 @@ def analyze(stock):
         #     date_15_month_high_reached, '%Y-%m-%d'))
         # print(datetime.datetime.today() + relativedelta(days=-45))
         # Returns yes, if the date it reached a 15month high was between 45 days and 15months from NOW
-        if datetime.datetime.strptime(date_15_month_high_reached, '%Y-%m-%d') < datetime.datetime.today() + relativedelta(days=-45):
+        if datetime.datetime.strptime(date_15_month_high_reached, '%Y-%m-%d') < datetime.datetime.today() + relativedelta(days=-40):
             return 'yes'
     # print(end_data/start_data)
     # print(stock_price_history)
