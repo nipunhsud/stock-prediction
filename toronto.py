@@ -5,6 +5,6 @@ import runner
 
 
 response = requests.get(
-    'https://fmpcloud.io/api/v3/stock/list?apikey=e5ccbcc74abe54698f96836dd4c51d48')
-symbolsList = response.json()
+    'https://financialmodelingprep.com/api/v3/company/stock/list')
+symbolsList = response.json().get("symbolsList")
 runner.analyze_stocks(symbolsList)
